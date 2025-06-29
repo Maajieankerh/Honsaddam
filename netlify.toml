@@ -1,0 +1,24 @@
+[build]
+  # No build command needed for static HTML sites
+  command = "echo 'No build required for static site'"
+  
+  # Publish directory (use "./" if files are in root, or "HonSD/" if in subfolder)
+  publish = "./"
+  
+  # Environment variables (optional)
+  [build.environment]
+    NODE_VERSION = "18"  # Only needed if using Node.js functions
+
+# Basic redirects for single-page apps
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Custom headers (optional)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
